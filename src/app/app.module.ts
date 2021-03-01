@@ -9,21 +9,30 @@ import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 import { ReproductorComponent } from './reproductor/reproductor.component';
-import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
+
+import { SharedModule } from './shared/shared.module';
+import { MyanimeModule } from './myanime/myanime.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReproductorComponent,
-    HeaderComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
+
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule
+    VgBufferingModule,
+
+    SharedModule,
+    MyanimeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

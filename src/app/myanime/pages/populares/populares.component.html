@@ -1,0 +1,41 @@
+<!-- <div class="card-group">
+
+    <div class="card-deck col-12 col-md-2 animate__animated animate__fadeIn">
+        <div class="card" *ngFor="let gif of Populares; let i = index" >
+          <img class="card-img-top" [src]="Populares[i].image_url" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{Populares[i].title}}</h5>
+            <p class="card-text">Puntuación: {{Populares[i].score}}</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Mas información</a>
+          </div>
+        </div>
+        
+    </div>
+</div> -->
+
+<div class="container">
+  <h1>50 Animes más Populares</h1>
+  <br>
+
+  <div class="row mb-4">
+
+    <div class="card col-sm-2 animate__animated animate__fadeIn" *ngFor="let gif of Populares; let i = index" >
+      <img class="card-img-top" [src]="Populares[i].image_url" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{Populares[i].title}}</h5>
+        <hr>
+        <p class="card-text">
+          Posición en el Rank: {{ Populares[i].rank }}
+          Puntuación: {{Populares[i].score}}
+        </p>
+      </div>
+
+      <div class="card-footer">
+        <a href="#" class="btn btn-primary">Mas información</a>
+      </div>
+    </div>
+
+  </div>
+</div>
