@@ -1,27 +1,36 @@
 <?php 
 	class DirecVideo implements \JsonSerializable {
 		
-		private $directorio;
-		private $video = array();
-		private $miniatura;
 		private $tipo;
+		private $datos = array();
 			
-		public function __construct($dir, array $videos, $mini, $tip) {
-			$this->directorio = $dir;
-			$this->video = $videos;
-			$this->miniatura = $mini;
+		public function __construct($tip) {
 			$this->tipo = $tip;
+		}
+		
+		public function addDatos($dir, array $videos, $mini) {
+			$this->datos[] = new Dato($dir, $videos, $mini);
 		}
 	
 		public function jsonSerialize() {
 			return[
-				$this->tipo => [
-					'directorio' => $this->directorio,
-					'videos' => $this->video,
-					'miniatura' => $this->miniatura
-				]
+				$this->tipo => $this->datos
 			];
 		}
+	}
+	
+	class Dato {
+		
+		public $directorio;
+		public $video = array();
+		public $miniatura;
+		
+		public function __construct($dir, array $videos, $mini) {
+			$this->directorio = $dir;
+			$this->video = $videos;
+			$this->miniatura = $mini;
+		}
+		
 	}
 	
 	//Llamamos a la funcion
@@ -36,6 +45,8 @@
 		for ($j = 0; $j < sizeof($tipos); $j++){
 			
 			$directorio = $videodir.$tipos[$j].'/';
+			
+			$resultado[] = new DirecVideo($tipos[$j]);
 			
 			//¿Hemos recibido la ruta de un directorio?
 			if (is_dir($directorio)) {
@@ -63,7 +74,7 @@
 					if ((substr($file, -4) == ".mkv") || (substr($file, -4) == ".mp4") || (substr($file, -4) == ".avi") || (substr($file, -4) == ".wmv") || (substr($file, -4) == ".webm")){
 					  //Si ya encontramos antes un archivo de video no hace falta anotarlo mas en el array
 					  if ($videoencontrado == 0) {
-						$resultado[] = new DirecVideo($carpetaslist[$i], obtenerListadoDeVideos($carpetaslist[$i]), obtenerMiniatura($carpetaslist[$i]), $tipos[$j]);
+						$resultado[$j]->addDatos($carpetaslist[$i], obtenerListadoDeVideos($carpetaslist[$i]), obtenerMiniatura($carpetaslist[$i]), $tipos[$j]);
 						
 						$videoencontrado = 1;
 					  }
