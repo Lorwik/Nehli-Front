@@ -1,0 +1,51 @@
+<div class="container">
+  <h2>Temporadas del {{ anioActual }} </h2>
+  <hr>
+
+  <label for="tAnio">Selecciona año:</label>
+
+  <div class="mb-4">
+    <select (change)="obtenerAnimesAnios($event.target.value)">
+      <option *ngFor="let item of anios;" value="{{item}}" >{{ item }}</option>
+    </select>
+  </div>
+
+  <div class="mb-4">
+    <div class="btn-group" role="group">
+      <button (click)="recibirTemp('winter')" class="btn btn-primary">Invierno</button>
+      <button (click)="recibirTemp('spring')" class="btn btn-success">Primavera</button>
+      <button (click)="recibirTemp('summer')" class="btn btn-danger">Verano</button>
+      <button (click)="recibirTemp('fall')" class="btn btn-warning">Otoño</button>
+    </div>
+  </div>
+
+  <h3>{{temporada}}</h3>
+
+  <div class="row row-cols-1 row-cols-md-5 g-4">
+
+    <div class="col" *ngFor="let temp of Temporadas;">
+      <div class="card h-100">
+        <img [src]="temp.image_url" class="card-img-top" alt="temp.title">
+        <div class="card-body">
+          <h5 class="card-title">{{temp.title}}</h5>
+          <hr>
+          <p class="card-text">
+            <b>Episodios:</b> {{ temp.episodes }}
+            <br />
+            <b>Puntuación:</b> {{ temp.score }}
+            <br />
+            <b>Genero:</b>
+            <a *ngFor="let genero of temp.genres; let i = index">
+              {{ genero.name }}<a *ngIf="i != temp.genres.length - 1 ">,</a>
+            </a>
+          </p>
+        </div>
+
+        <div class="card-footer">
+          <a href="{{ temp.url }}" target="_blank" class="btn btn-primary">Mas información</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

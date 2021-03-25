@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PopularesComponent } from './myanime/pages/populares/populares.component';
 import { TemporadaComponent } from './myanime/pages/temporada/temporada.component';
+import { GenerosComponent } from './myanime/pages/generos/generos.component';
 
 const routes: Routes = [
   {
@@ -15,8 +16,12 @@ const routes: Routes = [
     component: PopularesComponent
   },
   {
-    path: 'temporada:temp',
+    path: 'temporada',
     component: TemporadaComponent
+  },
+  {
+    path: 'generos',
+    component: GenerosComponent
   },
   {
     path: '**',
