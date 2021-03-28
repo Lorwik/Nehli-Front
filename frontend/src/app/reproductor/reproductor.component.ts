@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { ListadoService } from '../shared/services/listado.service';
 
 @Component({
   selector: 'app-reproductor',
@@ -7,21 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReproductorComponent implements OnInit {
 
+  idDir: number;
+  idVid: number;
+
   videoItems = [
     {
-      name: "Manos a la obra - 5x106 - Tino's Beauty Center",
-      src: "http://192.168.1.5/Nehli/videos/Series/Manos%20a%20la%20obra/Manos%20a%20la%20obra%20-%205x106%20-%20Tino's%20Beauty%20Center.mp4",
-      type: 'video/mp4'
-    },
-    {
-      name: 'El Internado. Las Cumbres 1x01 Episodio 1',
-      src: "http://192.168.1.5/Nehli/videos/Series/El%20Internado.%20Las%20Cumbres%20(2021)%20T1%20[AMZN%20WEB-DL%201080p%20h264%20DD+%205.1][PXL]/El%20Internado.%20Las%20Cumbres%201x01%20Episodio%201%20[AMZN%20WEB-DL%201080p%20h264%20DD+%205.1][PXL].mkv",
-      type: 'video/mp4'
-    },
-    {
-      name: 'Fear the Walking Dead 6x01 El final es el principio',
-      src: "http://192.168.1.5/Nehli/videos/Series/Fear%20The%20Walking%20Dead%20T6/Fear%20the%20Walking%20Dead%206x01%20El%20final%20es%20el%20principio%20[WEB-DL%20AMZN%201080p%20h264%20Dual%20DD%202.0-5.1%20Subs][GrupoHDS].mkv",
-      type: 'video/mp4'
+      name: '',
+      src: '',
+      type: '',
+      miniatura: '',
+      tipo: ''
     }
   ];
 
@@ -29,7 +26,31 @@ export class ReproductorComponent implements OnInit {
   currentVideo = this.videoItems[this.activeIndex];
   data;
 
-  constructor() { }
+  constructor(private rutaActiva: ActivatedRoute, private listadoService: ListadoService) { 
+    this.idDir = this.rutaActiva.snapshot.params.iddir
+    this.idVid = this.rutaActiva.snapshot.params.idvid
+
+    this.listadoService.obtenerListados();
+
+    console.log(this.listadoService.videotecas[this.idDir].dir[this.idVid].directorio);
+
+    for (let i = 0; i < this.listadoService.videotecas[this.idDir].dir[this.idVid].video.length; i++){
+
+      this.videoItems.push(
+        {
+          name: this.listadoService.videotecas[this.idDir].dir[this.idVid].directorio,
+          src: this.listadoService.videotecas[this.idDir].dir[this.idVid].directorio  + '/' + this.listadoService.videotecas[this.idDir].dir[this.idVid].video[i],
+          type: 'video/mp4',
+          miniatura: this.listadoService.videotecas[this.idDir].dir[this.idVid].miniatura,
+          tipo: this.listadoService.videotecas[this.idDir].tipo
+        }
+      );
+
+    }
+    
+    console.log(this.videoItems);
+
+  }
 
   ngOnInit(): void { }
 

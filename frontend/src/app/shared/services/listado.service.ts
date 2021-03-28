@@ -7,17 +7,19 @@ import { DirVideos } from '../interfaces/dirvideos.interface';
 })
 export class ListadoService {
 
-  url='http://192.168.1.5/ngNehli/back/';
+  url='http://192.168.1.5/ngNehli/';
+  //url='/ngNehli/';
 
   constructor(private http: HttpClient) { }
 
-  public directorios: DirVideos[] = [];
+  public videotecas: DirVideos[] = [];
+
 
   obtenerListados() {
-     return this.http.get<DirVideos>(`${this.url}funciones.php`)
+     return this.http.get<DirVideos[]>(`${this.url}funciones.php`)
      .subscribe((resp) => {
        console.log(resp);
-
+       this.videotecas = resp;
      });
    }
 

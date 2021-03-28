@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   }
 
     get listarTodo() {
-      return this.listadoService;
+      return this.listadoService.videotecas;
     }
 
 }

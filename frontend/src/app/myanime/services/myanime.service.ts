@@ -22,6 +22,7 @@ export class MyanimeService {
   obtenerPopulares() {
     this.http.get<Populares>(`${this.servicioURL}/top/anime/1/bypopularity`)
         .subscribe((resp) => {
+          console.log(resp);
           this.populares = resp.top;
         });
 

@@ -1,5 +1,5 @@
 .video-player-wrapper {
-    max-width: 800px;
+    max-width: 200px;
     text-align: center;
     margin: 0 auto;
 }
@@ -21,4 +21,8 @@
 
 li.selected {
     background: #03A9F4 !important;
+}
+
+.card {
+    cursor: pointer;
 }
