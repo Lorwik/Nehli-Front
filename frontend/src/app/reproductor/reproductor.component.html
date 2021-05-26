@@ -1,4 +1,4 @@
-<vg-player (onPlayerReady)="videoPlayerInit($event)">
+<!-- <vg-player (onPlayerReady)="videoPlayerInit($event)">
   <vg-overlay-play></vg-overlay-play>
   <vg-buffering></vg-buffering>
 
@@ -23,15 +23,28 @@
 
   <video #media [vgMedia]="media" [src]="currentVideo.src" id="singleVideo" preload="auto" crossorigin>
   </video>
-</vg-player>
+</vg-player> -->
 
-<div class="row row-cols-1 row-cols-md-4 g-4">
-  <div class="col" *ngFor="let vdo of videoItems; let $index = index">
-    <div class="card" (click)="startPlaylistVdo(vdo, $index)"
-    [class.selected]="vdo === currentVideo">
-      <img src="{{ vdo.miniatura }}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{ vdo.src.replace(vdo.name + '/', '') }}</h5>
+<div class="container">
+  <div class="reproductor mb-4">
+    <video #target class="video-js vjs-big-play-centered vjs-16-9" controls preload="auto" width="1280" heigh="768" poster="/assets/poster.png" codecs="theora, vorbis" data-setup='{}'>
+      <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a
+        web browser that
+        <a href="https://videojs.com/html5-video-support/" target="_blank">
+          supports HTML5 video
+        </a>
+      </p>
+    </video>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="col" *ngFor="let vdo of videoItems; let $index = index">
+      <div class="card" (click)="playVideo(vdo, $index)" [class.selected]="vdo === currentVideo">
+        <img src="{{ vdo.miniatura }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ vdo.src.replace(vdo.name + '/', '') }}</h5>
+        </div>
       </div>
     </div>
   </div>

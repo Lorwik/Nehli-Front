@@ -1,38 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ListadoService } from '../shared/services/listado.service';
+import { videoItem } from '../shared/interfaces/videoitems.interface';
+import videojs from 'video.js';
 
 @Component({
   selector: 'app-reproductor',
   templateUrl: './reproductor.component.html',
-  styleUrls: ['./reproductor.component.css']
+  styleUrls: [
+    './reproductor.component.css'
+]
 })
-export class ReproductorComponent implements OnInit {
-
+export class ReproductorComponent implements OnInit, OnDestroy {
+  @ViewChild('target', {static: true}) target: ElementRef;
   idDir: number;
   idVid: number;
 
-  videoItems = [
-    {
-      name: '',
-      src: '',
-      type: '',
-      miniatura: '',
-      tipo: ''
-    }
-  ];
+  videoItems: videoItem[];
 
   activeIndex = 0;
-  currentVideo = this.videoItems[this.activeIndex];
-  data;
+  currentVideo: videoItem;
 
-  constructor(private rutaActiva: ActivatedRoute, private listadoService: ListadoService) { 
+  //Variables del reproductor
+  player: videojs.Player;
+  options;
+
+  constructor(private rutaActiva: ActivatedRoute, private listadoService: ListadoService, private elementRef: ElementRef) { 
+
+    this.videoItems = new Array<videoItem>();
+
+    //obtenemos los datos de la URL:
     this.idDir = this.rutaActiva.snapshot.params.iddir
     this.idVid = this.rutaActiva.snapshot.params.idvid
 
+    //Obtenemos el listado de videos de la carpeta
     this.listadoService.obtenerListados();
-
-    console.log(this.listadoService.videotecas[this.idDir].dir[this.idVid].directorio);
 
     for (let i = 0; i < this.listadoService.videotecas[this.idDir].dir[this.idVid].video.length; i++){
 
@@ -48,36 +50,45 @@ export class ReproductorComponent implements OnInit {
 
     }
     
+    this.currentVideo = this.videoItems[this.activeIndex];
+
     console.log(this.videoItems);
 
+    this.options = {
+      controls: true,
+      autoplay: true,
+      'sources': [{
+        'src': this.videoItems[this.activeIndex].src,
+        'type': this.videoItems[this.activeIndex].type
+      }]
+    };
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.player = videojs(this.target.nativeElement, this.options, function onPlayerReady() {
+      console.log('onPlayerReady', this);
+    });
+    //this.playVideo(this.currentVideo[this.activeIndex],this.activeIndex);
+   }
 
-  videoPlayerInit(data) {
-    this.data = data;
-
-    this.data.getDefaultMedia().subscriptions.loadedMetadata.subscribe(this.initVdo.bind(this));
-    this.data.getDefaultMedia().subscriptions.ended.subscribe(this.nextVideo.bind(this));
-  }
-
-  nextVideo() {
-    this.activeIndex++;
-
-    if (this.activeIndex === this.videoItems.length) {
-      this.activeIndex = 0;
+   ngOnDestroy() {
+    // destroy player
+    if (this.player) {
+      this.player.dispose();
     }
-
-    this.currentVideo = this.videoItems[this.activeIndex];
   }
 
-  initVdo() {
-    this.data.play();
-  }
-
-  startPlaylistVdo(item, index: number) {
+  playVideo(item, index: number) {
     this.activeIndex = index;
     this.currentVideo = item;
+
+    this.player.src({ src: this.videoItems[this.activeIndex].src, type: this.videoItems[this.activeIndex].type});
+
+    // var sourceTag = document.createElement('source');
+    // sourceTag.setAttribute('src', this.videoItems[this.activeIndex].src);
+    // sourceTag.setAttribute('type', this.videoItems[this.activeIndex].type);
+    // document.getElementById('oaf_html5_api').appendChild(sourceTag);
+    
   }
 
 }
