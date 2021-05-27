@@ -1,7 +1,7 @@
 <?php 
 	class DirecVideo implements \JsonSerializable {
 		
-		private $tipo;
+		private $tipo = null;
 		private $datos = array();
 			
 		public function __construct($tip) {
@@ -14,16 +14,18 @@
 	
 		public function jsonSerialize() {
 			return[
-				$this->tipo => $this->datos
+				'dir' => $this->datos,
+				'tipo' => $this->tipo
+				
 			];
 		}
 	}
 	
 	class Dato {
 		
-		public $directorio;
+		public $directorio = null;
 		public $video = array();
-		public $miniatura;
+		public $miniatura = null;
 		
 		public function __construct($dir, array $videos, $mini) {
 			$this->directorio = $dir;
@@ -39,8 +41,8 @@
 	//Lista todos los directorios y obtiene todos los archivos de video
 	function obtenerListadoDeCarpetas(){
 		
-		$videodir = '../videos/';
-		$tipos = ['Series', 'Peliculas', 'Peliculas-Animacion', 'Anime'];
+		$videodir = 'videos/';
+		$tipos = ['Series', 'Peliculas', 'Peliculas_Animacion', 'Anime'];
 		
 		for ($j = 0; $j < sizeof($tipos); $j++){
 			
@@ -84,6 +86,9 @@
 			  }
 
 			}
+			
+			//Vaciamos el array para que no se dupliquen los datos
+			unset($carpetaslist);
 		}
 		
 		header('Content-Type: application/json');

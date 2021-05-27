@@ -1,17 +1,17 @@
-<div *ngFor="let lista of listarTodo; let i = index" class="mb-4">
+<div *ngFor="let lista of listarTodo; let i = index" class="mb-4 fadeIn">
      <h2>{{ lista.tipo }}</h2>
      <hr>
 
      <div class="row row-cols-1 row-cols-md-4 g-4">
           <div *ngFor="let dir of lista.dir; let j = index" class="col">
-               <div class="card h-100">
+               <div class="card h-100" [routerLink]="['/reproductor', i, j]">
                     <img *ngIf="dir.miniatura != null" src="{{ dir.miniatura }}" class="card-img-top" alt="...">
-                    <img *ngIf="dir.miniatura == null" src="/assets/miniatura_default.png" class="card-img-top"
+                    <img *ngIf="dir.miniatura == null" src="./assets/miniatura_default.png" class="card-img-top"
                          alt="...">
-                    <div class="card-body">
-                         <h5 class="card-title">{{ dir.directorio.replace('videos/' + lista.tipo + '/', '') }}</h5>
+                    <div class="card-body" >
+                         <h5 class="card-title">{{ dir.directorio.replace('videos/' + lista.tipo + '/', '') | slice:0:25 }}</h5>
                     </div>
-                    <button [routerLink]="['/reproductor', i, j]" type="button" class="btn btn-primary">Reproducir</button>
+                    <!-- <button [routerLink]="['/reproductor', i, j]" type="button" class="btn btn-primary">Reproducir</button> -->
                </div>
           </div>
      </div>
