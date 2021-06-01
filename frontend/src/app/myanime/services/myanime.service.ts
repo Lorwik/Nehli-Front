@@ -14,7 +14,7 @@ export class MyanimeService {
 
   public populares: Top[] = [];
   public season: Anime[] = [];
-  public pagGeneros: number;
+  public pagGeneros!: number;
   public generosAnime: Animu[] = [];
 
   constructor(private http: HttpClient) { }

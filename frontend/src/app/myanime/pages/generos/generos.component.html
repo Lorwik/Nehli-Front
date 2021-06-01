@@ -1,51 +1,33 @@
-<div class="container">
-  <h2>Generos de {{generoActual}}</h2>
+<div class="container text-layout">
+  <h2>Generos de {{selectedGenero.name}}</h2>
   <hr>
 
-  <div class="mb-4">
-    <div class="btn-group" role="group">
-      <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        Generos
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-        <li><a class="dropdown-item botones" *ngFor="let genero of generos; let i = index"
-            (click)="dameGenero(i + 1)">{{ genero }}</a></li>
-      </ul>
-    </div>
-
+  <div class="p-mb-3">
+      <p-dropdown [options]="generos" (onChange)="dameGenero()" [(ngModel)]="selectedGenero" optionLabel="name"></p-dropdown>
   </div>
 
-  <div class="row row-cols-1 row-cols-md-5 g-4 mb-4">
+  <div class="p-d-flex p-flex-wrap p-jc-center">
 
-    <div class="col" *ngFor="let genero of Generos;">
-      <div class="card h-100">
-        <img [src]="genero.image_url" class="card-img-top" alt="genero.title">
-        <div class="card-body">
-          <h5 class="card-title">{{genero.title}}</h5>
-          <hr>
-          <p class="card-text">
-            Episodios: {{ genero.episodes }}
-            <br />
-            Puntuación: {{ genero.score }}
-          </p>
-        </div>
+    <div class="p-mr-2" *ngFor="let genero of Generos;">
+      <app-tarjetas
+        [data]="{ imagen:  genero.image_url, titulo: genero.title, episodios: genero.episodes, puntuacion: genero.score, url: genero.url }">
+      </app-tarjetas>
 
-        <div class="card-footer">
-          <a href="{{ genero.url }}" target="_blank" class="btn btn-primary">Mas información</a>
-        </div>
-      </div>
     </div>
 
   </div>
 
   <div class="btn-toolbar justify-content-center mb-4" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group me-2" role="group" aria-label="First group">
-      <button type="button" *ngIf="(paginaActual - 2) > 0" (click)="especificarPagina(paginaActual - 2)" class="btn btn-secondary">{{ paginaActual - 2 }}</button>
-      <button type="button" *ngIf="(paginaActual - 1) > 0" (click)="especificarPagina(paginaActual - 1)" class="btn btn-secondary">{{ paginaActual - 1 }}</button>
+      <button type="button" *ngIf="(paginaActual - 2) > 0" (click)="especificarPagina(paginaActual - 2)"
+        class="btn btn-secondary">{{ paginaActual - 2 }}</button>
+      <button type="button" *ngIf="(paginaActual - 1) > 0" (click)="especificarPagina(paginaActual - 1)"
+        class="btn btn-secondary">{{ paginaActual - 1 }}</button>
       <button type="button" (click)="especificarPagina(paginaActual)" class="btn btn-info">{{ paginaActual }}</button>
-      <button type="button" *ngIf="(paginaActual + 1) < PagGenero" (click)="especificarPagina(paginaActual + 1)" class="btn btn-primary">{{ paginaActual + 1 }}</button>
-      <button type="button" *ngIf="(paginaActual + 2) < PagGenero" (click)="especificarPagina(paginaActual + 2)" class="btn btn-primary">{{ paginaActual + 2}}</button>
+      <button type="button" *ngIf="(paginaActual + 1) < PagGenero" (click)="especificarPagina(paginaActual + 1)"
+        class="btn btn-primary">{{ paginaActual + 1 }}</button>
+      <button type="button" *ngIf="(paginaActual + 2) < PagGenero" (click)="especificarPagina(paginaActual + 2)"
+        class="btn btn-primary">{{ paginaActual + 2}}</button>
     </div>
   </div>
 

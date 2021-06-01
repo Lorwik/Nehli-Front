@@ -1,6 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+    margin: 10px;
+    background-color: var( --surface-b );
+    font-family: var( --font-family );
+}
 
-body {
-    background-color:rgb(23, 26, 29) ;
-    color:rgb(155, 154, 154);
+.text-layout {
+    color: var( --text-color);
+}
+
+.tarjeta {
+    width: 15rem;
+    /* height: 33rem; */
+    margin-bottom: 2em;
+    padding: 0 auto;
+}
+
+.tarjeta-home {
+    width: 20rem;
+    /* height: 33rem; */
+    margin-bottom: 2em;
+    padding: 0 auto;
+}
+
+.container {
+    max-width: 100rem;
+    margin: 0 auto;
+}
+
+.img-carta-home {
+    width: 295px;
+    height: 166px;
 }

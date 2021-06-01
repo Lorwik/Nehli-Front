@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { GenerosComponent } from './myanime/pages/generos/generos.component';
 import { PopularesComponent } from './myanime/pages/populares/populares.component';
 import { TemporadaComponent } from './myanime/pages/temporada/temporada.component';
-import { GenerosComponent } from './myanime/pages/generos/generos.component';
 import { ReproductorComponent } from './reproductor/reproductor.component';
 
 const routes: Routes = [
@@ -13,16 +13,16 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'animespopulares',
-    component: PopularesComponent
+    path: 'generos',
+    component: GenerosComponent,
+  },
+  {
+    path: 'populares',
+    component: PopularesComponent,
   },
   {
     path: 'temporada',
-    component: TemporadaComponent
-  },
-  {
-    path: 'generos',
-    component: GenerosComponent
+    component: TemporadaComponent,
   },
   {
     path: 'reproductor/:iddir/:idvid',
@@ -35,11 +35,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { useHash: true })
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

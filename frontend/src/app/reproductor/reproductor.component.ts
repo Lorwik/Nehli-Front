@@ -12,7 +12,6 @@ import videojs from 'video.js';
 ]
 })
 export class ReproductorComponent implements OnInit, OnDestroy {
-  @ViewChild('target', {static: true}) target: ElementRef;
   idDir: number;
   idVid: number;
 
@@ -22,8 +21,8 @@ export class ReproductorComponent implements OnInit, OnDestroy {
   currentVideo: videoItem;
 
   //Variables del reproductor
-  player: videojs.Player;
-  options;
+  player!: videojs.Player;
+  options: any;
 
   constructor(private rutaActiva: ActivatedRoute, private listadoService: ListadoService, private elementRef: ElementRef) { 
 
@@ -65,9 +64,7 @@ export class ReproductorComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.player = videojs(this.target.nativeElement, this.options, function onPlayerReady() {
-      console.log('onPlayerReady', this);
-    });
+    this.player = videojs("my-player", this.options, function onPlayerReady() {});
     //this.playVideo(this.currentVideo[this.activeIndex],this.activeIndex);
    }
 
@@ -78,7 +75,7 @@ export class ReproductorComponent implements OnInit, OnDestroy {
     }
   }
 
-  playVideo(item, index: number) {
+  playVideo(item: videoItem, index: number) {
     this.activeIndex = index;
     this.currentVideo = item;
 

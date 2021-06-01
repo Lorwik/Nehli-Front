@@ -1,26 +1,13 @@
-<div class="container">
+<div class="container text-layout">
   <h1>50 Animes más Populares</h1>
   <br>
 
-  <div class="row row-cols-1 row-cols-md-5 g-4">
+  <div class="p-d-flex p-flex-wrap p-jc-center">
 
-    <div class="col" *ngFor="let populares of Populares;">
-      <div class="card h-100">
-        <img [src]="populares.image_url" class="card-img-top" alt="populares.title">
-        <div class="card-body">
-          <h5 class="card-title">{{populares.title}}</h5>
-          <hr>
-          <p class="card-text">
-            Episodios: {{ populares.episodes }}
-            <br />
-            Puntuación: {{ populares.score }}
-          </p>
-        </div>
+    <div class="p-mr-2" *ngFor="let popular of Populares;">
 
-        <div class="card-footer">
-          <a href="{{ populares.url }}" target="_blank" class="btn btn-primary">Mas información</a>
-        </div>
-      </div>
+      <app-tarjetas [data]="{ imagen: popular.image_url, titulo: popular.title, episodios: popular.episodes, puntuacion: popular.score, url: popular.url }"></app-tarjetas>
+
     </div>
 
   </div>

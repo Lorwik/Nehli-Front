@@ -7,8 +7,8 @@ import { DirVideos } from '../interfaces/dirvideos.interface';
 })
 export class ListadoService {
 
-  url='http://192.168.1.5/ngNehli/';
-  //url='/ngNehli/';
+  //url='http://192.168.1.5/ngNehli/';
+  url='/ngNehli/';
 
   constructor(private http: HttpClient) { }
 

@@ -1,1 +1,16 @@
-<p>tarjetas works!</p>
+<p-card subheader="{{data.titulo}}" styleClass="tarjeta">
+    <ng-template pTemplate="header">
+        <img [src]="data.imagen" class="card-img-top img-carta" alt="data.titulo">
+    </ng-template>
+
+    <ng-template pTemplate="content">
+        <b>Episodios:</b> {{ data.episodios }} <br />
+        <b>Puntuación:</b> {{ data.puntuacion }}
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <a href="{{ data.url }}" target="_blank">
+            <p-button label="Más" icon="pi pi-external-link"></p-button>
+        </a>
+    </ng-template>
+</p-card>

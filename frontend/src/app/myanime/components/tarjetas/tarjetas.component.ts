@@ -8,7 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TarjetasComponent implements OnInit {
 
-  @Input() data:any[] = [];
+  @Input()data!: {
+    imagen: string,
+    titulo: string,
+    episodios: number | null,
+    puntuacion: number,
+    url: string
+  };
 
   constructor() { }
 

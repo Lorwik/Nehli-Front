@@ -1,20 +1,30 @@
 import { NgSwitch } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MyanimeService } from '../../services/myanime.service';
 
 @Component({
   selector: 'app-temporada',
   templateUrl: './temporada.component.html',
   styles: [
+    `
+    a {
+      text-decoration:none;
+      text-align: center;
+    }
+    `
   ]
 })
 export class TemporadaComponent implements OnInit {
 
   anioActual: number = new Date().getFullYear();
-  temporada: string;
+  temporada!: string;
   tempActual: string;
   anios: number[] = [];
   anioSeleccionado: number;
+
+  selected: FormControl = new FormControl(null);
+  opc: any;
 
   constructor(private MyanimeService: MyanimeService) {
     this.anioSeleccionado = this.anioActual;
@@ -27,10 +37,13 @@ export class TemporadaComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.selected.valueChanges.subscribe(changes => {
+      this.obtenerAnimesAnios();
+    });
+  }
 
-  obtenerAnimesAnios(newanio:number){
-    this.anioSeleccionado = newanio;
+  obtenerAnimesAnios(){
     this.MyanimeService.obtenerSeason(this.tempActual, this.anioSeleccionado);
   }
 
