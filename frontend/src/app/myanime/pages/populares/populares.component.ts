@@ -4,14 +4,7 @@ import { MyanimeService } from '../../services/myanime.service';
 @Component({
   selector: 'app-populares',
   templateUrl: './populares.component.html',
-  styles: [
-    `
-      a {
-        text-decoration:none;
-        text-align: center;
-      }
-    `
-  ]
+  styles: []
 })
 export class PopularesComponent implements OnInit {
 

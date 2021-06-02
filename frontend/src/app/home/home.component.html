@@ -1,7 +1,7 @@
 <div *ngFor="let lista of listarTodo; let i = index" class="mb-4 fadeIn">
      <div class="container text-layout">
           <h2>{{ lista.tipo }}</h2>
-          <hr>
+          <p-divider></p-divider>
 
           <div class="p-d-flex p-flex-wrap p-jc-center">
                <div *ngFor="let dir of lista.dir; let j = index" class="col">
@@ -9,9 +9,7 @@
                          styleClass="tarjeta-home p-mr-2">
 
                          <ng-template pTemplate="header">
-                              <img *ngIf="dir.miniatura != null" src="{{ dir.miniatura }}"
-                                   class="card-img-top img-carta-home">
-                              <img *ngIf="dir.miniatura == null" src="./assets/miniatura_default.png"
+                              <img [src]="dir | imagen"
                                    class="card-img-top img-carta-home">
                          </ng-template>
 

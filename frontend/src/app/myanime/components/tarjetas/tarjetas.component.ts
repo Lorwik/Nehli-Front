@@ -4,6 +4,12 @@ import { Component, Input, OnInit } from '@angular/core';
   selector: 'app-tarjetas',
   templateUrl: './tarjetas.component.html',
   styles: [
+    `
+    a {
+      text-decoration:none;
+      text-align: center;
+    }
+  `
   ]
 })
 export class TarjetasComponent implements OnInit {
