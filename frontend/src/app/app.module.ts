@@ -1,33 +1,34 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
-import { HomeComponent } from './home/home.component';
-import { MyanimeModule } from './myanime/myanime.module';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { PrimeNgModule } from './prime-ng/prime-ng.module';
+import { ComponentsModule } from './components/components.module';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './guards/auth-guard.guard';
+import { NoAuthGuard } from './guards/no-auth-guard.guard';
+import { MyanimeService } from './services/myanime.service';
+import { LoginService } from './services/login.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
-
-    SharedModule,
-    MyanimeModule,
-
-    PrimeNgModule,
+    AppRoutingModule,
+    ComponentsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    NoAuthGuard,
+    MyanimeService,
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

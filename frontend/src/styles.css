@@ -1,38 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+
 html, body {
-    margin: 10px;
+    margin: 0px;
     background-color: var( --surface-b );
     font-family: var( --font-family );
     box-sizing: border-box;
-}
-
-.text-layout {
-    color: var( --text-color);
-}
-
-.tarjeta {
-    width: 15rem;
-    /* height: auto; */
-    margin-bottom: 2em;
-    padding: 0 auto;
-}
-
-.tarjeta-home {
-    width: 20rem;
-    /* height: 33rem; */
-    margin-bottom: 2em;
-    padding: 0 auto;
-}
-
-.container {
-    max-width: 100rem;
-    margin: 0 auto;
-}
-
-.img-carta {
-    height: 337px;
-}
-
-.img-carta-home {
-    width: 295px;
-    height: 166px;
 }
