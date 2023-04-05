@@ -1,0 +1,16 @@
+.my-footer {
+  background-color: #1F2D40;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.my-footer span {
+  margin: 0;
+  padding: 0;
+}
