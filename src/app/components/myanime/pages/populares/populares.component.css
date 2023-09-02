@@ -1,0 +1,52 @@
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo {
+  margin-left: 150px;
+}
+
+.p-d-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tarjeta-container {
+  max-width: 300px;
+  margin: 10px;
+  flex-basis: calc(33.33% - 20px);
+}
+
+@media screen and (max-width: 1200px) {
+  .tarjeta-container {
+    width: 25%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .tarjeta-container {
+    width: 33.33%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tarjeta-container {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .tarjeta-container {
+    width: 100%;
+  }
+}

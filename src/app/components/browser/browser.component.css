@@ -1,0 +1,112 @@
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.loading-overlay i {
+  font-size: 3rem;
+  color: white;
+}
+
+.thumbnail-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* establece la relación de aspecto de la imagen como 16:9 */
+  transition: transform 0.3s ease-out;
+}
+
+.thumbnail-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-out;
+}
+
+.thumbnail-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-out;
+  transform: translateY(100%);
+}
+
+.thumbnail-container:hover .thumbnail-image {
+  transform: scale(1.1);
+}
+
+.thumbnail-container:hover .thumbnail-text {
+  transform: translateY(0%);
+}
+
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-row {
+  flex: 1 1 auto;
+  padding: 10px;
+  box-sizing: border-box;
+  max-width: calc(100% / 5 - 20px); /* Divide el ancho en 5 columnas, con un espacio de 20px entre cada tarjeta */
+  width: calc(100% / 5 - 20px); /* Evita que las tarjetas se expandan más allá del ancho máximo */
+  margin-top: 20px; /* Añade un margen superior de 20px */
+  margin-bottom: 20px; /* Añade un margen inferior de 20px */
+}
+
+.card-container {
+  margin-left: 100px;
+}
+
+h2 {
+  padding-top: 20px;
+}
+
+.lista {
+  padding-bottom: 100px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .card-row {
+    max-width: calc(100% / 4 - 20px); /* Divide el ancho en 4 columnas */
+    width: calc(100% / 4 - 20px);
+    margin-top: 20px; /* Añade un margen superior de 20px */
+    margin-bottom: 20px; /* Añade un margen inferior de 20px */
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .card-row {
+    max-width: calc(100% / 3 - 20px); /* Divide el ancho en 3 columnas */
+    width: calc(100% / 3 - 20px);
+    margin-top: 20px; /* Añade un margen superior de 20px */
+    margin-bottom: 20px; /* Añade un margen inferior de 20px */
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .card-row {
+    max-width: calc(100% / 2 - 20px); /* Divide el ancho en 2 columnas */
+    width: calc(100% / 2 - 20px);
+    margin-top: 20px; /* Añade un margen superior de 20px */
+    margin-bottom: 20px; /* Añade un margen inferior de 20px */
+  }
+}

@@ -1,0 +1,32 @@
+#container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; /* Agregamos flex-wrap para que el contenido se ajuste a pantallas más pequeñas */
+}
+
+#video-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#my-video {
+  height: 80vh;
+  width: 80vw;
+}
+
+#list-container {
+  flex: 1; /* Establecemos un ancho del 100% para que ocupe todo el espacio disponible */
+  height: 80vh;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  #container {
+    flex-direction: column;
+  }
+}

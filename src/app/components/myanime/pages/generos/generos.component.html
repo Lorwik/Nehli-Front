@@ -1,0 +1,34 @@
+<div class="container text-layout">
+  <div class="titulo">
+    <h2>Generos de {{selectedGenero.name}}</h2>
+
+    <p-dropdown [options]="generos" (onChange)="obtenerGenero()" [(ngModel)]="selectedGenero"
+      optionLabel="name"></p-dropdown>
+  </div>
+
+  <div class="p-grid p-justify-center p-d-flex">
+
+    <div class="tarjeta-container p-col-12 p-md-6 p-lg-4 p-xl-3" *ngFor="let genero of generosAnime;">
+      <app-tarjetas
+        [data]="{ imagen:  genero.images['jpg'].image_url, titulo: genero.title, episodios: genero.episodes, puntuacion: genero.score, url: genero.url }">
+      </app-tarjetas>
+
+    </div>
+
+  </div>
+
+  <div class="btn-toolbar justify-content-center mb-4" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group me-2" role="group" aria-label="First group">
+      <button type="button" *ngIf="(paginaActual - 2) > 0" (click)="especificarPagina(paginaActual - 2)"
+        class="btn btn-secondary">{{ paginaActual - 2 }}</button>
+      <button type="button" *ngIf="(paginaActual - 1) > 0" (click)="especificarPagina(paginaActual - 1)"
+        class="btn btn-secondary">{{ paginaActual - 1 }}</button>
+      <button type="button" (click)="especificarPagina(paginaActual)" class="btn btn-info">{{ paginaActual }}</button>
+      <button type="button" *ngIf="(paginaActual + 1) < PagGenero" (click)="especificarPagina(paginaActual + 1)"
+          class="btn btn-primary">{{ paginaActual + 1 }}</button>
+        <button type="button" *ngIf="(paginaActual + 2) < PagGenero" (click)="especificarPagina(paginaActual + 2)"
+          class="btn btn-primary">{{ paginaActual + 2}}</button>
+    </div>
+  </div>
+
+</div>

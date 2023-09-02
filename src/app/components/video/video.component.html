@@ -1,0 +1,8 @@
+<div id="container">
+  <div id="video-container">
+    <video id="my-video" class="video-js"></video>
+  </div>
+  <div id="list-container">
+    <p-listbox [options]="listVideos" [filter]="true" (onClick)="seleccionarCapitulo($event)"></p-listbox>
+  </div>
+</div>

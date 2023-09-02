@@ -1,0 +1,26 @@
+<p-blockUI [blocked]="isLoading">
+
+  <div class="loading-overlay">
+    <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)"
+      animationDuration="1s"></p-progressSpinner>
+  </div>
+</p-blockUI>
+
+<div *ngIf="isError">
+  <p-messages [value]="messages" [enableService]="false" [closable]="false"></p-messages>
+</div>
+
+<div class="lista" *ngIf="!isLoading && !isError">
+  <div class="card-container" *ngFor="let category of getObjectKeys(videos)">
+    <h2>{{ category }}</h2>
+    <div class="card-wrapper">
+      <div class="card-row" *ngFor="let subcategory of getObjectKeys(videos[category])">
+        <div class="thumbnail-container"
+          [routerLink]="['/videos', category, subcategory, videos[category][subcategory].videos[0]]">
+          <img class="thumbnail-image" [src]="getImageUrl(category, subcategory)" (error)="onThumbnailError($event)" />
+          <div class="thumbnail-text">{{ subcategory | slice:0:26 }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+    margin: 0px;
+    background: linear-gradient(var(--surface-b), #000000);
+    font-family: var( --font-family );
+    box-sizing: border-box;
+}
