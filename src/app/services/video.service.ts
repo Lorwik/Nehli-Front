@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { map, Observable, tap } from 'rxjs';
 
 import { listVideos, Video } from '../interfaces/video.interface';
+import { environments } from 'src/environments/environments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideoService {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl: string = environments.baseURL;
 
   constructor(private http: HttpClient) { }
 

@@ -3,14 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environments } from 'src/environments/environments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-
-  private loginUrl = 'http://127.0.0.1:3000/api/auth/login'; // URL del endpoint de login en el backend
-  private registroUrl = 'http://127.0.0.1:3000/api/auth/register';
+  private apiUrl: string = environments.baseURL;
+  private loginUrl = `${this.apiUrl}/api/auth/login`; // URL del endpoint de login en el backend
+  private registroUrl = `${this.apiUrl}/api/auth/register`;
 
   constructor(private http: HttpClient, private router: Router) { }
 
