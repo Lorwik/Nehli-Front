@@ -42,11 +42,11 @@ export class BrowserComponent implements OnInit {
     if (this.videos[category][subcategory].thumbnails[0] !== undefined) {
       return `http://192.168.1.12/ngNehli/videos/${category}/${subcategory}/${this.videos[category][subcategory].thumbnails[0]}`;
     } else {
-      return 'assets/images/miniatura_default.png';
+      return 'assets/images/miniatura_default.webp';
     }
   }
 
   onThumbnailError(event: any) {
-    event.target.src = 'assets/images/miniatura_default.png';
+    event.target.src = 'assets/images/miniatura_default.webp';
   }
 }

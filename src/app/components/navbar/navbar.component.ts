@@ -59,11 +59,11 @@ export class NavbarComponent {
           },
         ]
       },
-      {
-        label: 'Salir',
-        icon: 'pi pi-fw pi-power-off',
-        command: () => this.logout()
-      }
+      // {
+      //   label: 'Salir',
+      //   icon: 'pi pi-fw pi-power-off',
+      //   command: () => this.logout()
+      // }
     ];
   }
 

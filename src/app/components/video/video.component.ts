@@ -49,7 +49,7 @@ export class VideoComponent implements OnInit {
       controls: true,
       sources: [{
         src: this.videoUrl,
-        poster: "assets/images/poster.png",
+        poster: "assets/images/logo.webp",
         type: this.typeExtension
       }]
     };
